@@ -1,0 +1,25 @@
+individual pieces csvs (K279-K576)
+
+note_name: note name + octave number (includes # / b)
+duration:	length of note (4 = quarter, 8 = eighth, etc.) (d = dotted, dd = double dotted)
+measure:	measure the note is in (0 = pickup)
+beat:	beat the note is in
+subdiv:	subdivision the note is in (1-ee-and-uh -> 1-2-3-4) (use '&' to indicate 32nd note between subdivisions, and 'e & a' for 64th notes)
+NCT:	Is the note a non-chord tone?
+from_root:	how far the note is from the root of the chord (root = 1, rest = 0, no # / b)
+harm:	1st level harmonic analysis (rest for RH & LH = 0)
+BI2:	Is the note part of the 2nd basic idea phrase (2nd half of presentation (sentence))
+CI:	Is the note part of the contrasting idea phrase (2nd half of the antecedant (period))
+trill:	note trills or has similar ornament
+dynamic:	a = accent, c = crescendo, d = decrescendo
+
+pieces csv
+
+name:	K number + movement
+key:	key center + major / minor
+title:	mostly indicates form - usually not given
+time_sig:	common = 4/4, cut = 2/2
+tempo marking:	e.g. allegro, adagio, etc
+bpm:	first number = note duration (e.g. 4 = quarter note, d = dotted)
+pickup_bar:	true (1) or false (0)
+pickup_length:	note duration (e.g. 4 = quarter note, d = dotted)
