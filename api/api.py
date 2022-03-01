@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_orifins=['*'],
+    allow_origins=['*'],
     allow_credentials=True,
     allow_methods=['*'],
     allow_headers=['*']
@@ -12,4 +12,4 @@ app.add_middleware(
 
 @app.get('/')
 def index():
-    return {";)" : "hi handsome"}
+    return {";) " : "hi handsome"}
