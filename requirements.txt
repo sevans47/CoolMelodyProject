@@ -6,3 +6,4 @@ wheel>=0.29
 
 #api stuff
 fastapi
+uvicorn
