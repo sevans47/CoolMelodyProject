@@ -41,19 +41,19 @@ count_lines:
         '{printf "%4s %s\n", $$1, $$2}{s+=$$0}END{print s}'
 	@echo ''
 
-# ----------------------------------
-#      UPLOAD PACKAGE TO PYPI
-# ----------------------------------
-PYPI_USERNAME=<AUTHOR>
-build:
-	@python setup.py sdist bdist_wheel
-
-pypi_test:
-	@twine upload -r testpypi dist/* -u $(PYPI_USERNAME)
-
-pypi:
-	@twine upload dist/* -u $(PYPI_USERNAME)
 
 #----------API stuff----------
 run_api:
 	@uvicorn api.api:app --reload
+
+#----------gcloud stuff----------
+
+PROJECT_ID=le-wagon-796
+BUCKET_NAME=cool-melody-project
+REGION=europe-west1
+
+set_project:
+	@gcloud config set project ${PROJECT_ID}
+
+create_bucket:
+	@gsutil mb -l ${REGION} -p ${PROJECT_ID} gs://${BUCKET_NAME}
