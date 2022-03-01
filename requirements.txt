@@ -4,6 +4,13 @@ setuptools>=26
 twine
 wheel>=0.29
 
+# tests/linter
+black
+coverage
+flake8
+pytest
+yapf
+
 #api stuff
 fastapi
 uvicorn
