@@ -136,7 +136,8 @@ def midi_to_notes(filename: str) -> pd.DataFrame:
 
 if __name__ == "__main__":
     filenames = get_movement_filenames()
-    example_pm = notes_to_midi(filenames[0])
-    instrument = example_pm.instruments[0]
+    print(filenames[0])
+    # example_pm = notes_to_midi(filenames[0])
+    # instrument = example_pm.instruments[0]
     df = midi_to_notes(filenames[0])
     print(df.head())
