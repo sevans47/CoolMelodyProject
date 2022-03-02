@@ -37,7 +37,7 @@ def duration_to_seconds(note, piece_spb):
         note = str(note)
     if note[-2:] == 'dd':
         s = piece_spb * beat_dict[note[:-2]] * 1.75
-    elif x[-1] == 'd':
+    elif note[-1] == 'd':
         s = piece_spb * beat_dict[note[:-1]] * 1.5
     else:
         s = piece_spb * beat_dict[note]
