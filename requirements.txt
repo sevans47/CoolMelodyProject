@@ -18,5 +18,7 @@ uvicorn
 #data science stuff
 pandas
 numpy
+matplotlib.pyplot
+seaborn
 
 #python stuff
