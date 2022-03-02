@@ -18,6 +18,9 @@ uvicorn
 #data science stuff
 pandas
 numpy
+tensorflow
+joblib
 
 #music libraries
 pretty_midi
+music21
