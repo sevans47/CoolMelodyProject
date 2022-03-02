@@ -19,4 +19,5 @@ uvicorn
 pandas
 numpy
 
-#python stuff
+#music libraries
+pretty_midi
