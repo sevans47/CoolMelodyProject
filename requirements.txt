@@ -14,3 +14,9 @@ yapf
 #api stuff
 fastapi
 uvicorn
+
+#data science stuff
+pandas
+numpy
+
+#python stuff
