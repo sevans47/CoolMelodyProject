@@ -3,7 +3,7 @@ import numpy as np
 import pretty_midi
 import collections
 
-from CoolMelodyProject.csvcombiner import get_movement_filenames
+from csvcombiner import get_movement_filenames
 
 
 ### set up dictionaries
@@ -97,7 +97,7 @@ def notes_to_midi(filename: str) -> pretty_midi.PrettyMIDI:
         else:
             note = pretty_midi.Note(
                 velocity=100,
-                pitch=notes['pitch_norm'].values[0],
+                pitch=note['pitch_norm'],
                 start=start,
                 end=end
             )
@@ -136,8 +136,10 @@ def midi_to_notes(filename: str) -> pd.DataFrame:
 
 if __name__ == "__main__":
     filenames = get_movement_filenames()
-    print(filenames[0])
+    print(filenames[12])
+    # df1 = process_df(filenames[2])
+    # print(df1.head())
     # example_pm = notes_to_midi(filenames[0])
     # instrument = example_pm.instruments[0]
-    df = midi_to_notes(filenames[0])
+    df = midi_to_notes(filenames[12])
     print(df.head())
