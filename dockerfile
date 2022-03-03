@@ -1,6 +1,6 @@
 FROM python:3.8.6-buster
 
-COPY setup.py .setup.py
+COPY setup.py /setup.py
 COPY requirements.txt /requirements.txt
 COPY api /api
 COPY CoolMelodyProject /CoolMelodyProject

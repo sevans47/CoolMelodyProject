@@ -11,5 +11,5 @@ app.add_middleware(
 )
 
 @app.get('/')
-def index():
-    return {";) " : "hi handsome"}
+def note():
+    return {"notes" : "4/8 C4_hi D-4 E#4 F8 trip{G4 A4 B4} c4"}
