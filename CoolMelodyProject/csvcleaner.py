@@ -3,7 +3,7 @@ import numpy as np
 import pretty_midi
 import collections
 
-from csvcombiner import get_movement_filenames
+from CoolMelodyProject.csvcombiner import get_movement_filenames
 
 
 ### set up dictionaries
@@ -97,7 +97,7 @@ def notes_to_midi(filename: str) -> pretty_midi.PrettyMIDI:
         else:
             note = pretty_midi.Note(
                 velocity=100,
-                pitch=int(pretty_midi.note_name_to_number(note['note_name'])),
+                pitch=notes['pitch_norm'],
                 start=start,
                 end=end
             )
