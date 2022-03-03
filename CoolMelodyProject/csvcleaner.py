@@ -97,7 +97,7 @@ def notes_to_midi(filename: str) -> pretty_midi.PrettyMIDI:
         else:
             note = pretty_midi.Note(
                 velocity=100,
-                pitch=int(pretty_midi.note_name_to_number(note['note_name'])),
+                pitch=notes['pitch_norm'].values[0],
                 start=start,
                 end=end
             )
