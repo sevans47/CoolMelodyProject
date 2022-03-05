@@ -43,6 +43,7 @@ count_lines:
 
 
 #----------API stuff----------
+#--reload for local, --server.port $PORT for docker, you specify port when running the container locally but not on gcp
 run_api:
 	@uvicorn api.api:app --reload
 
