@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import ast
 
 app = FastAPI()
 app.add_middleware(
@@ -10,6 +11,9 @@ app.add_middleware(
     allow_headers=['*']
 )
 
-@app.get('/')
-def note():
-    return {"notes" : "4/8 C4_hi D-4 E#4 F8 trip{G4 A4 B4} c4"}
+
+@app.get('/predict')
+def note(sequence):
+    li = ast.literal_eval(sequence)
+    next_note = li[0][0]
+    return {"notes" : str(next_note)}

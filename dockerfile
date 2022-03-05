@@ -6,6 +6,6 @@ COPY api /api
 COPY CoolMelodyProject /CoolMelodyProject
 
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --default-timeout=1000 -r requirements.txt
 
 CMD uvicorn api.api:app --host 0.0.0.0 --port $PORT
