@@ -20,5 +20,10 @@ pandas
 numpy
 matplotlib
 seaborn
+tensorflow
+joblib
 
-#python stuff
+
+#music libraries
+pretty_midi
+music21
