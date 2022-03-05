@@ -18,8 +18,11 @@ uvicorn
 #data science stuff
 pandas
 numpy
+matplotlib
+seaborn
 tensorflow
 joblib
+
 
 #music libraries
 pretty_midi
