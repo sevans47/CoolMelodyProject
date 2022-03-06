@@ -14,7 +14,7 @@ app.add_middleware(
 
 @app.get('/')
 def greeting():
-    return {'greeting':'you ding a big man ting bruv'}
+    return {'greeting':'you ding a big man ting bruv.'}
 
 @app.get('/predict')
 def note(sequence):
