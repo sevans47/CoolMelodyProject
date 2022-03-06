@@ -58,3 +58,12 @@ set_project:
 
 create_bucket:
 	@gsutil mb -l ${REGION} -p ${PROJECT_ID} gs://${BUCKET_NAME}
+
+#----------container stuff----------
+PROJECT_ID=le-wagon-796
+DOCKER_IMAGE_NAME=tmp-api
+
+build_push_deploy_container:
+	@docker build -t eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} .
+	@docker push eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME}
+	@gcloud run deploy --image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} --platform managed --region europe-west1
