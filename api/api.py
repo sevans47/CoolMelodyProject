@@ -4,6 +4,7 @@ import ast
 import random
 import tensorflow as tf
 from tensorflow import keras
+import numpy as np
 
 app = FastAPI()
 app.add_middleware(
@@ -125,12 +126,79 @@ pitch_mapping = {0: 0,
  91: 43,
  92: 44}
 
+duration_reverse_mapping = {0: 64,
+ 1: 4,
+ 2: 6,
+ 3: 32,
+ 4: 48,
+ 5: 2,
+ 6: 3,
+ 7: 16,
+ 8: 24,
+ 9: 1,
+ 10: 8,
+ 11: 12,
+ 12: 14}
+reverse_len_in_64th_notes = {v: k for k, v in len_in_64th_notes.items()}
+pitch_reverse_mapping = {0: 0,
+ 1: 49,
+ 2: 50,
+ 3: 51,
+ 4: 52,
+ 5: 53,
+ 6: 54,
+ 7: 55,
+ 8: 56,
+ 9: 57,
+ 10: 58,
+ 11: 59,
+ 12: 60,
+ 13: 61,
+ 14: 62,
+ 15: 63,
+ 16: 64,
+ 17: 65,
+ 18: 66,
+ 19: 67,
+ 20: 68,
+ 21: 69,
+ 22: 70,
+ 23: 71,
+ 24: 72,
+ 25: 73,
+ 26: 74,
+ 27: 75,
+ 28: 76,
+ 29: 77,
+ 30: 78,
+ 31: 79,
+ 32: 80,
+ 33: 81,
+ 34: 82,
+ 35: 83,
+ 36: 84,
+ 37: 85,
+ 38: 86,
+ 39: 87,
+ 40: 88,
+ 41: 89,
+ 42: 90,
+ 43: 91,
+ 44: 92}
+
 @app.get('/')
 def greeting():
     return {'greeting':'you ding a big man ting bruv.'}
 
+@app.get('/initialize')
+def first_sequence():
+
+
+
+    return {'first_sequence': 'a sequence of 8 notes'}
+
 @app.get('/predict')
-def note(sequence):
+def predict(sequence):
     #-----grabbing the model-----
     model = keras.models.load_model("model/model.keras")
 
@@ -140,18 +208,40 @@ def note(sequence):
     input_sequence = []
 
     for note in list_sequence:
-        dur_len_in_64th_notes = len_in_64th_notes[note[1]]
+        dur_len_in_64th_notes = len_in_64th_notes[str(note[1])]
         dur_mapped = duration_mapping[dur_len_in_64th_notes]
         pitch_mapped = pitch_mapping[note[0]]
         mapped_note = [pitch_mapped, dur_mapped]
         note_normalized = [mapped_note[0]/float(L_pitch_symb), mapped_note[1]/float(L_duration_symb)]
         input_sequence.append(note_normalized)
 
-    #-----take in the sequence-----
-
+    #-----take in the sequence and predict-----
+    input_sequence = np.array(input_sequence).reshape(1,8,2)
     prediction = model.predict(input_sequence)
 
     #-----transform the prediction into the notes the front-end can take in-----
-    #----> grab it from stephen
+    # return predictions from sample
+    pitch_pred, duration_pred = prediction
 
-    return {'predictions': }
+    # get log of predictions
+    pitch_pred = np.log(pitch_pred[0]) / 1.0  # diversity?
+    duration_pred = np.log(duration_pred[0])
+
+    # un-log predictions (not sure why we logged them...)
+    exp_pitch_preds = np.exp(pitch_pred)
+    exp_duration_preds = np.exp(duration_pred)
+
+    # make odds of all predictions = 1.0
+    pitch_pred = exp_pitch_preds / np.sum(exp_pitch_preds)
+    duration_pred = exp_duration_preds / np.sum(exp_duration_preds)
+
+    # get top 3 pitch predictions and top 2 duration predictions
+    pitch_index_top_3 = np.argpartition(pitch_pred, -3)[-3:]
+    dur_index_top_2 = np.argpartition(duration_pred, -2)[-2:]
+
+    # return three notes as [pitch, duration] pairs
+    three_notes = [[pitch, np.random.choice(dur_index_top_2)] for pitch in pitch_index_top_3]
+    three_notes_mapped = [[pitch_reverse_mapping[pitch], reverse_len_in_64th_notes[duration_reverse_mapping[duration]]] for pitch, duration in three_notes]
+
+
+    return {'predictions': three_notes_mapped}
