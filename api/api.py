@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import ast
 import random
+import tensorflow as tf
+from tensorflow import keras
 
 app = FastAPI()
 app.add_middleware(
@@ -18,7 +20,18 @@ def greeting():
 
 @app.get('/predict')
 def note(sequence):
-    li = ast.literal_eval(sequence)
-    i = random.randint(0,4)
-    next_note = li[i]
-    return {"notes" : str(next_note)}
+    #-----grabbing the model-----
+    model = keras.models.load_model("model/model.keras")
+
+    #-----transform the sequence to the format model can take in-----
+    #sequence example : [actual pitch, actual duration]
+    input_sequence = ast.literal_eval(sequence)
+
+    #-----take in the sequence-----
+
+    prediction = model.predict(input_sequence)
+
+    #-----transform the prediction into the notes the front-end can take in-----
+    #----> grab it from stephen
+
+    return {'predictions': }
