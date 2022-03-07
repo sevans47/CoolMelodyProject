@@ -21,7 +21,7 @@ numpy
 matplotlib
 seaborn
 tensorflow
-joblib
+
 
 
 #music libraries
