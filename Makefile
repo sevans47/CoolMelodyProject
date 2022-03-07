@@ -63,6 +63,9 @@ create_bucket:
 PROJECT_ID=le-wagon-796
 DOCKER_IMAGE_NAME=tmp-api
 
+build:
+	@docker build -t eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} .
+
 build_push_deploy_container:
 	@docker build -t eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} .
 	@docker push eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME}
