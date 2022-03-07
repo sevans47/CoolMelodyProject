@@ -18,10 +18,7 @@ uvicorn
 #data science stuff
 pandas
 numpy
-matplotlib
-seaborn
 tensorflow
-
 
 
 #music libraries
