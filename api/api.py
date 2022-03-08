@@ -257,7 +257,7 @@ def first_sequence():
 @app.get('/predict')
 def predict(sequence):
     #-----grabbing the model-----
-    model = keras.models.load_model("model/model.keras")
+    model = keras.models.load_model("model/model.h5")
 
     #-----transform the sequence to the format model can take in-----
     #sequence example : [actual pitch, actual duration]
