@@ -210,50 +210,50 @@ def first_sequence():
         note[0] = int(note[0])
         before_normaliz_input_sequence.append(note)
 
-    #-----convert the sequence into the format model can take in-----
-    normalized_input_sequence = []
-    for note in before_normaliz_input_sequence:
-        dur_len_in_64th_notes = len_in_64th_notes[str(note[1])]
-        dur_mapped = duration_mapping[dur_len_in_64th_notes]
-        pitch_mapped = pitch_mapping[note[0]]
-        mapped_note = [pitch_mapped, dur_mapped]
-        note_normalized = [mapped_note[0]/float(L_pitch_symb), mapped_note[1]/float(L_duration_symb)]
-        normalized_input_sequence.append(note_normalized)
+    # #-----convert the sequence into the format model can take in-----
+    # normalized_input_sequence = []
+    # for note in before_normaliz_input_sequence:
+    #     dur_len_in_64th_notes = len_in_64th_notes[str(note[1])]
+    #     dur_mapped = duration_mapping[dur_len_in_64th_notes]
+    #     pitch_mapped = pitch_mapping[note[0]]
+    #     mapped_note = [pitch_mapped, dur_mapped]
+    #     note_normalized = [mapped_note[0]/float(L_pitch_symb), mapped_note[1]/float(L_duration_symb)]
+    #     normalized_input_sequence.append(note_normalized)
 
-    #-----grab the model and predict-----
-    model = keras.models.load_model("model/model.keras")
-
-
-    #-----take in the sequence and predict-----
-    input_sequence = np.array(normalized_input_sequence).reshape(1,8,2)
-    prediction = model.predict(input_sequence)
-
-    #-----transform the prediction into the notes the front-end can take in-----
-    # return predictions from sample
-    pitch_pred, duration_pred = prediction
-
-    # get log of predictions
-    pitch_pred = np.log(pitch_pred[0]) / 1.0  # diversity?
-    duration_pred = np.log(duration_pred[0])
-
-    # un-log predictions (not sure why we logged them...)
-    exp_pitch_preds = np.exp(pitch_pred)
-    exp_duration_preds = np.exp(duration_pred)
-
-    # make odds of all predictions = 1.0
-    pitch_pred = exp_pitch_preds / np.sum(exp_pitch_preds)
-    duration_pred = exp_duration_preds / np.sum(exp_duration_preds)
-
-    # get top 3 pitch predictions and top 2 duration predictions
-    pitch_index_top_3 = np.argpartition(pitch_pred, -3)[-3:]
-    dur_index_top_2 = np.argpartition(duration_pred, -2)[-2:]
-
-    # return three notes as [pitch, duration] pairs
-    three_notes = [[pitch, np.random.choice(dur_index_top_2)] for pitch in pitch_index_top_3]
-    three_notes_mapped = [[pitch_reverse_mapping[pitch], reverse_len_in_64th_notes[duration_reverse_mapping[duration]]] for pitch, duration in three_notes]
+    # #-----grab the model and predict-----
+    # model = keras.models.load_model("model/model.keras")
 
 
-    return {'first_sequence': three_notes_mapped}
+    # #-----take in the sequence and predict-----
+    # input_sequence = np.array(normalized_input_sequence).reshape(1,8,2)
+    # prediction = model.predict(input_sequence)
+
+    # #-----transform the prediction into the notes the front-end can take in-----
+    # # return predictions from sample
+    # pitch_pred, duration_pred = prediction
+
+    # # get log of predictions
+    # pitch_pred = np.log(pitch_pred[0]) / 1.0  # diversity?
+    # duration_pred = np.log(duration_pred[0])
+
+    # # un-log predictions (not sure why we logged them...)
+    # exp_pitch_preds = np.exp(pitch_pred)
+    # exp_duration_preds = np.exp(duration_pred)
+
+    # # make odds of all predictions = 1.0
+    # pitch_pred = exp_pitch_preds / np.sum(exp_pitch_preds)
+    # duration_pred = exp_duration_preds / np.sum(exp_duration_preds)
+
+    # # get top 3 pitch predictions and top 2 duration predictions
+    # pitch_index_top_3 = np.argpartition(pitch_pred, -3)[-3:]
+    # dur_index_top_2 = np.argpartition(duration_pred, -2)[-2:]
+
+    # # return three notes as [pitch, duration] pairs
+    # three_notes = [[pitch, np.random.choice(dur_index_top_2)] for pitch in pitch_index_top_3]
+    # three_notes_mapped = [[pitch_reverse_mapping[pitch], reverse_len_in_64th_notes[duration_reverse_mapping[duration]]] for pitch, duration in three_notes]
+
+
+    return {'first_sequence': before_normaliz_input_sequence} #before normalizing format
 
 @app.get('/predict')
 def predict(sequence):
