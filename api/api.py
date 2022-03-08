@@ -204,11 +204,11 @@ def first_sequence():
 
     #-----convert the first sequence to list of notes----
     lis_first_sequence = list(first_sequence)
-    before_normaliz_input_sequence = []
+    first_input_sequence = []
     for note in lis_first_sequence:
         note = note.split('-')
         note[0] = int(note[0])
-        before_normaliz_input_sequence.append(note)
+        first_input_sequence.append(note)
 
     # #-----convert the sequence into the format model can take in-----
     # normalized_input_sequence = []
@@ -252,8 +252,7 @@ def first_sequence():
     # three_notes = [[pitch, np.random.choice(dur_index_top_2)] for pitch in pitch_index_top_3]
     # three_notes_mapped = [[pitch_reverse_mapping[pitch], reverse_len_in_64th_notes[duration_reverse_mapping[duration]]] for pitch, duration in three_notes]
 
-
-    return {'first_sequence': before_normaliz_input_sequence} #before normalizing format
+    return {'first_sequence': first_input_sequence} #before normalizing format
 
 @app.get('/predict')
 def predict(sequence):
