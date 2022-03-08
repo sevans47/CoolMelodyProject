@@ -11,5 +11,6 @@ COPY CoolMelodyProject /CoolMelodyProject
 COPY model /model
 COPY api /api
 COPY raw_data /raw_data
+COPY model /model.h5
 
 CMD uvicorn api.api:app --host 0.0.0.0 --port $PORT
