@@ -113,3 +113,5 @@ def predict(sequence):
 
 
     return {'predictions': three_notes_mapped}
+
+#API DONE
