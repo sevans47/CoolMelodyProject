@@ -77,10 +77,9 @@ def predict(sequence):
     input_sequence = []
 
     for note in list_sequence:
-        print(note)
-        print(len_in_64th_notes)
-        dur_len_in_64th_notes = len_in_64th_notes[note[1]]
-        dur_mapped = duration_mapping[dur_len_in_64th_notes]
+        # dur_len_in_64th_notes = len_in_64th_notes[note[1]]
+        # dur_mapped = duration_mapping[dur_len_in_64th_notes]
+        dur_mapped = duration_mapping[float(note[1])]
         pitch_mapped = pitch_mapping[note[0]]
         mapped_note = [pitch_mapped, dur_mapped]
         note_normalized = [mapped_note[0]/float(L_pitch_symb), mapped_note[1]/float(L_duration_symb)]
