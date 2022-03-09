@@ -49,7 +49,7 @@ def greeting():
 @app.get('/initialize')
 def first_sequence():
     #-----generate data to randomly grab data from-----
-    random_value = random.randint(0,32)
+    random_value = random.randint(0,31)
 
     df = pd.read_csv(f'raw_data/clean_csvs/csv_{random_value}.csv')
     first_sequence = df['pitch_dur0'][:8]
@@ -108,6 +108,8 @@ def predict(sequence):
     # return three notes as [pitch, duration] pairs
     three_notes = [[pitch, np.random.choice(dur_index_top_2)] for pitch in pitch_index_top_3]
     three_notes_mapped = [[pitch_reverse_mapping[pitch], duration_reverse_mapping[duration]] for pitch, duration in three_notes]
+
+
 
 
     return {'predictions': three_notes_mapped}
