@@ -196,7 +196,7 @@ def first_sequence():
     #-----generate data to randomly grab data from-----
     random_value = random.randint(0,32)
 
-    df = pd.read_csv(f'raw_data/clean_csvs/csv_{random_value}', sep='\t')
+    df = pd.read_csv(f'raw_data/clean_csvs/csv_{random_value}.csv', sep='\t')
     first_sequence = df['pitch_dur0'][:8]
 
 
