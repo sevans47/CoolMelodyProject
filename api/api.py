@@ -194,7 +194,7 @@ def greeting():
 @app.get('/initialize')
 def first_sequence():
     #-----generate data to randomly grab data from-----
-    random_value = random.randint(0,57)
+    random_value = random.randint(0,32)
 
     df = pd.read_csv(f'raw_data/clean_csvs/csv_{random_value}', sep='\t')
     first_sequence = df['pitch_dur0'][:8]
@@ -214,7 +214,7 @@ def first_sequence():
 @app.get('/predict')
 def predict(sequence):
     #-----grabbing the model-----
-    model = keras.models.load_model("model/model.h5")
+    model = keras.models.load_model("model.h5")
 
     #-----transform the sequence to the format model can take in-----
     #sequence example : [actual pitch, actual duration]

@@ -8,7 +8,7 @@ RUN pip install --upgrade pip
 RUN pip install --default-timeout=1000 -r requirements.txt
 
 COPY CoolMelodyProject /CoolMelodyProject
-COPY model /model
+COPY model.h5 /model.h5
 COPY api /api
 COPY raw_data /raw_data
 
