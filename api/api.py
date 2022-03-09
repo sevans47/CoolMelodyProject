@@ -49,7 +49,7 @@ def greeting():
 @app.get('/initialize')
 def first_sequence():
     #-----generate data to randomly grab data from-----
-    random_value = random.randint(0,32)
+    random_value = random.randint(0,31)
 
     df = pd.read_csv(f'raw_data/clean_csvs/csv_{random_value}.csv')
     first_sequence = df['pitch_dur0'][:8]
@@ -77,10 +77,9 @@ def predict(sequence):
     input_sequence = []
 
     for note in list_sequence:
-        print(note)
-        print(len_in_64th_notes)
-        dur_len_in_64th_notes = len_in_64th_notes[note[1]]
-        dur_mapped = duration_mapping[dur_len_in_64th_notes]
+        # dur_len_in_64th_notes = len_in_64th_notes[note[1]]
+        # dur_mapped = duration_mapping[dur_len_in_64th_notes]
+        dur_mapped = duration_mapping[float(note[1])]
         pitch_mapped = pitch_mapping[note[0]]
         mapped_note = [pitch_mapped, dur_mapped]
         note_normalized = [mapped_note[0]/float(L_pitch_symb), mapped_note[1]/float(L_duration_symb)]
@@ -111,4 +110,8 @@ def predict(sequence):
     three_notes_mapped = [[pitch_reverse_mapping[pitch], duration_reverse_mapping[duration]] for pitch, duration in three_notes]
 
 
+
+
     return {'predictions': three_notes_mapped}
+
+#API DONE
