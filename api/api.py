@@ -63,7 +63,6 @@ def first_sequence():
         note[0] = int(note[0])
         first_input_sequence.append(note)
 
-
     return {'first_sequence': first_input_sequence} #before normalizing format
 
 @app.get('/predict')
@@ -82,8 +81,7 @@ def predict(sequence):
         dur_mapped = duration_mapping[float(note[1])]
         pitch_mapped = pitch_mapping[note[0]]
         mapped_note = [pitch_mapped, dur_mapped]
-        note_normalized = [mapped_note[0]/float(L_pitch_symb), mapped_note[1]/float(L_duration_symb)]
-        input_sequence.append(note_normalized)
+        input_sequence.append(mapped_note)
 
     #-----take in the sequence and predict-----
     input_sequence = np.array(input_sequence).reshape(1,8,2)
