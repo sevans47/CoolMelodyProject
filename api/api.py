@@ -49,7 +49,10 @@ def greeting():
 @app.get('/initialize')
 def first_sequence():
     #-----generate data to randomly grab data from-----
-    random_value = random.randint(0,31)
+    good_csvs = [1, 7, 9, 13, 15, 22, 23, 30]
+
+    random_value = random.choice(good_csvs)
+    # random_value = random.randint(0,31)
 
     df = pd.read_csv(f'raw_data/clean_csvs/csv_{random_value}.csv')
     first_sequence = df['pitch_dur0'][:8]
