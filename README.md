@@ -1,5 +1,5 @@
 
-![Logo](screenshots/logo.png)
+![Logo](screenshots/logo.jpg)
 
 
 # MiniMozart
