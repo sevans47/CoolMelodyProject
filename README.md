@@ -1,74 +1,36 @@
-# Data analysis
-- Document here the project: CoolMelodyProject
-- Description: Project Description
-- Data Source:
-- Type of analysis:
 
-Please document the project the better you can.
+![Logo](screenshots/logo.png)
 
-# Startup the project
 
-The initial setup.
+# MiniMozart
 
-Create virtualenv and install the project:
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv ~/venv ; source ~/venv/bin/activate ;\
-    pip install pip -U; pip install -r requirements.txt
-```
+Deep learning RNN project that creates a melody one note at a time with Mozart's help.
 
-Unittest test:
-```bash
-make clean install test
-```
+## Data creation
 
-Check for CoolMelodyProject in gitlab.com/{group}.
-If your project is not set please add it:
+Data created from MIDI files acquired from:
+- the [Classical Music MIDI dataset](https://www.kaggle.com/soumikrakshit/classical-music-midi) from Kaggle
+- the Music 21 library's MIDI corpus
 
-- Create a new project on `gitlab.com/{group}/CoolMelodyProject`
-- Then populate it:
+Preparing the data for the model:
+- melody extracted from the MIDI files
+- saved values for pitch and duration for each note in the melody
+- melody transposed to C major / A Minor
+- removed uncommon rhythms and tuplets
+- created 8-note-long sequences for X and the 9th note for y
 
-```bash
-##   e.g. if group is "{group}" and project_name is "CoolMelodyProject"
-git remote add origin git@github.com:{group}/CoolMelodyProject.git
-git push -u origin master
-git push -u origin --tags
-```
+## Model building
+We created a multi-output deep learning model using Tensor Flow.  We used an LSTM for the first layer, before splitting into pitch and duration paths.  Each path had an LSTM layer, a dense layer, and a softmax output layer with dropout layers in between each.
 
-Functionnal test with a script:
+## API
+The API has two main functions:
+- initialize: return an opening 8 note sequence at random from one of Mozart's piano sonatas.
+- predict: using our model's predictions, suggest three notes (pitch / duration combinations) that are likely to come next in the sequence (according to Mozart)
 
-```bash
-cd
-mkdir tmp
-cd tmp
-CoolMelodyProject-run
-```
 
-# Install
 
-Go to `https://github.com/{group}/CoolMelodyProject` to see the project, manage issues,
-setup you ssh public key, ...
+## Authors
 
-Create a python3 virtualenv and activate it:
-
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv -ppython3 ~/venv ; source ~/venv/bin/activate
-```
-
-Clone the project and install it:
-
-```bash
-git clone git@github.com:{group}/CoolMelodyProject.git
-cd CoolMelodyProject
-pip install -r requirements.txt
-make clean install test                # install and test
-```
-Functionnal test with a script:
-
-```bash
-cd
-mkdir tmp
-cd tmp
-CoolMelodyProject-run
-```
+- [@sevans47](https://github.com/sevans47)
+- [@bendthompson](https://github.com/bendthompson)
+- [@Mizuki8783](https://github.com/Mizuki8783)
