@@ -7,7 +7,7 @@ requirements = [x.strip() for x in content if 'git+' not in x]
 
 setup(name='CoolMelodyProject',
       version="1.0",
-      description="Project Description",
+      description="Deep learning RNN project that creates a melody one note at a time with Mozart's help.",
       packages=find_packages(),
       install_requires=requirements,
       test_suite='tests',
