@@ -1,10 +1,14 @@
 
-![Screenshot](screenshots/created_melody.jpg)
+![Logo](screenshots/logo.jpg)
 
 
 # MiniMozart
 
 Deep learning RNN project that creates a melody one note at a time with Mozart's help.
+
+See the [MiniMozartWebsite](https://github.com/sevans47/MiniMozartWebsite) repo to see more info about the website
+
+![screenshot](screenshots/created_melody.jpg)
 
 ## Data creation
 
