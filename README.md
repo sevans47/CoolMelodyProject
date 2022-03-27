@@ -1,5 +1,5 @@
 
-![Logo](screenshots/logo.jpg)
+![Screenshot](screenshots/created_melody.jpg)
 
 
 # MiniMozart
@@ -28,8 +28,35 @@ The API has two main functions:
 - predict: using our model's predictions, suggest three notes (pitch / duration combinations) that are likely to come next in the sequence (according to Mozart)
 
 
+# Install
 
-## Authors
+Go to `https://github.com/sevans47/MiniMozart` to see the project, manage issues,
+setup you ssh public key, ...
+
+Create a python3 virtualenv and activate it:
+
+```bash
+sudo apt-get install virtualenv python-pip python-dev
+deactivate; virtualenv -ppython3 ~/venv ; source ~/venv/bin/activate
+```
+
+Clone the project and install it:
+
+```bash
+git clone git@github.com:sevans47/MiniMozart.git
+cd MiniMozart
+pip install -r requirements.txt
+make clean install test                # install and test
+```
+
+```bash
+git remote add origin git@github.com:sevans47/MiniMozart.git
+git push -u origin master
+git push -u origin --tags
+```
+
+
+# Authors
 
 - [@sevans47](https://github.com/sevans47)
 - [@bendthompson](https://github.com/bendthompson)
