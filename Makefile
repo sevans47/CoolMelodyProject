@@ -60,7 +60,7 @@ create_bucket:
 	@gsutil mb -l ${REGION} -p ${PROJECT_ID} gs://${BUCKET_NAME}
 
 #----------container stuff----------
-PROJECT_ID=le-wagon-796
+PROJECT_ID=wagon-bootcamp-342202
 DOCKER_IMAGE_NAME=tmp-api
 
 build:
