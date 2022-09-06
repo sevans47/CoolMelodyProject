@@ -6,3 +6,6 @@
 #*.csv
 **/__pycache__/
 .env
+CoolMelodyProject/csvcleaner.py
+CoolMelodyProject/csvcombiner.py
+CoolMelodyProject/data/*
