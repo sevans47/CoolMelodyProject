@@ -3,7 +3,7 @@
 
 Deep learning RNN project that creates a melody one note at a time with Mozart's help.
 
-Visit the MiniMozart website [here](https://cmp-web-3mknid2ioq-ew.a.run.app/)
+Visit the MiniMozart website [here](https://mm-web-test-3mknid2ioq-ew.a.run.app/)
 
 Watch a [presentation that introduces MiniMozart](https://www.youtube.com/watch?v=-F3EDyv4pKo&t=2335s)
 
